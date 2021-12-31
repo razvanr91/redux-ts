@@ -1,16 +1,33 @@
-interface RepositoriesState {
-	loading: boolean;
-	error: string | null;
-	data: string[];
-}
-
 const initialState: RepositoriesState = {
 	loading: false,
 	error: null,
 	data: [],
 };
 
-export const reducer = (state: RepositoriesState = initialState, action: any): RepositoriesState => {
+interface RepositoriesState {
+	loading: boolean;
+	error: string | null;
+	data: string[];
+}
+
+interface SearchRepositoriesAction {
+	type: "search_repositories";
+}
+
+interface SearchRepositoriesSuccessAction {
+	type: "search_repositories_success";
+	payload: string[];
+}
+
+interface SearchRepositoriesErrorAction {
+	type: "search_repositories_error";
+	payload: string;
+}
+
+export const reducer = (
+	state: RepositoriesState = initialState,
+	action: SearchRepositoriesAction | SearchRepositoriesSuccessAction | SearchRepositoriesErrorAction
+): RepositoriesState => {
 	switch (action.type) {
 		case "search_repositories":
 			return { loading: true, error: null, data: [] };

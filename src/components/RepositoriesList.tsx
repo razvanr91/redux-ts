@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useActions } from "../state/hooks/useActions";
 
 const RepositoriesList: React.FC = () => {
 	const [term, setTerm] = useState("");
 	const { searchRepositories } = useActions();
+	const { loading, error, data } = useSelector((state: any) => state.repositories);
+	console.log(loading, error, data);
 
 	const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

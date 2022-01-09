@@ -27,7 +27,7 @@ interface SearchRepositoriesSuccessAction {
 
 interface SearchRepositoriesErrorAction {
 	type: ActionTypes.SEARCH_REPOSITORIES_ERROR;
-	payload: string[];
+	payload: string;
 }
 
 type Action = SearchRepositoriesAction | SearchRepositoriesSuccessAction | SearchRepositoriesErrorAction;
@@ -39,7 +39,7 @@ const reducer = (state: RepositoriesState = initialState, action: Action): Repos
 		case ActionTypes.SEARCH_REPOSITORIES_SUCCESS:
 			return { loading: false, error: null, data: action.payload };
 		case ActionTypes.SEARCH_REPOSITORIES_ERROR:
-			return { loading: false, error: null, data: action.payload };
+			return { loading: false, error: action.payload, data: [action.payload] };
 		default:
 			return state;
 	}

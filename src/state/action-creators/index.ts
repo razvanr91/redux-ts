@@ -32,3 +32,5 @@ const searchRepositories = (term: string) => {
 		}
 	};
 };
+
+export default searchRepositories;
